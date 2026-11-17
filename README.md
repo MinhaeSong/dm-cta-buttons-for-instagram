@@ -1,63 +1,59 @@
-# Instagram DM CTA Buttons: 인스타그램 PC 웹 DM CTA 버튼 렌더러 (크롬 확장 프로그램)
+# Instagram DM CTA Buttons
 
-**Render hidden Instagram DM CTA buttons (postback, web_url, button template, generic template) on Instagram desktop web.**
+**English** | [한국어](README.ko.md)
 
-인스타그램 DM에서 "아래 버튼을 클릭하시면 DM이 발송됩니다!"라는 메시지를 받았는데 PC에서는 버튼이 안 보이나요? 댓글 자동 DM(ManyChat 같은 도구)이 보낸 버튼은 휴대폰 앱에서만 보이고, 인스타그램 PC 웹에는 나타나지 않습니다. 이 크롬 확장 프로그램을 설치하면 PC에서도 그 버튼을 보고 누를 수 있습니다.
+**Render the hidden CTA buttons in Instagram DMs on desktop web, and click them without picking up your phone.**
 
-| 설치 전 (인스타그램 PC 웹) | 설치 후 |
+Got an automated DM saying *"Tap the button below to get the link!"* but there's no button on instagram.com? Comment-to-DM tools like ManyChat send messages with CTA buttons (postback buttons, URL buttons, button templates, generic templates, quick replies), and Instagram only renders them in the mobile app. On desktop you see the text and nothing to click.
+
+This Chrome extension brings those buttons back.
+
+| Instagram desktop web (before) | With this extension |
 |---|---|
-| 메시지 텍스트만 보이고 버튼 없음 | 메시지 아래에 버튼 표시, 클릭하면 전송 |
+| Message text only, no button | CTA buttons rendered under the message, clickable |
 
-## 이런 분께 필요해요
+## Who it's for
 
-- 인플루언서 게시물에 댓글을 달고 자동 DM을 받았는데, PC에서 "버튼을 눌러 주세요" 버튼이 안 보이는 분
-- 인스타그램 DM 버튼, 빠른 답장(Quick Reply), 링크 버튼이 데스크톱에서 안 눌리는 분
-- 체험단, 이벤트, 쿠폰, 자료 링크를 받으려고 매번 휴대폰을 꺼내기 번거로운 분
+- You commented on a creator's post, got an auto-DM, and the "Send me the link" button is missing on desktop
+- Instagram DM buttons, quick replies or link buttons don't show or don't work on your laptop
+- You manage DMs on desktop and keep reaching for your phone just to tap one button
 
-## 기능
+## Features
 
-- **postback 버튼 표시와 전송**: "메시지 보내주세요!", "팔로우 했어요" 같은 버튼을 메시지 아래에 보여 주고, 누르면 모바일 앱에서 누른 것처럼 전송합니다.
-- **링크 버튼 열기**: 링크형 버튼은 새 탭에서 엽니다.
-- **모든 대화방 자동 적용**: DM 목록에서 대화방을 옮겨 다녀도 버튼이 있는 메시지에 자동으로 붙습니다.
-- **설정 없음, 외부 서버 없음**: 인스타그램 페이지 안에서만 동작하고 어떤 데이터도 밖으로 보내지 않습니다.
+- **Postback buttons**: buttons like "Send me the link!" or "I followed 🙌" appear under the message. Clicking one sends the postback exactly as tapping it in the mobile app would.
+- **URL buttons**: open in a new tab.
+- **Works in every thread**: buttons are added automatically as you move between conversations.
+- **No setup, no servers**: runs entirely inside the Instagram tab. No data leaves the page.
 
-## 설치 방법
+## Install
 
-1. 이 페이지 위쪽 초록색 **Code** 버튼을 누르고 **Download ZIP**을 선택합니다.
-2. 내려받은 zip 파일의 압축을 풉니다.
-3. 크롬 주소창에 `chrome://extensions`를 입력하고, 오른쪽 위 **개발자 모드**를 켭니다.
-4. **압축해제된 확장 프로그램을 로드합니다**를 누르고 압축을 푼 폴더(`manifest.json`이 들어 있는 폴더)를 선택합니다.
-5. [인스타그램 DM](https://www.instagram.com/direct/inbox/)을 새로고침합니다.
+1. Click the green **Code** button on this page and choose **Download ZIP**.
+2. Unzip the file.
+3. Open `chrome://extensions` and turn on **Developer mode** (top right).
+4. Click **Load unpacked** and select the unzipped folder (the one containing `manifest.json`).
+5. Reload your [Instagram DMs](https://www.instagram.com/direct/inbox/).
 
-크롬 외에 엣지(Edge), 웨일(Whale) 등 크로미움 기반 브라우저에서도 같은 방법으로 설치할 수 있습니다.
+Works on Chrome, Edge, Brave, Whale and other Chromium-based browsers.
 
-## 왜 PC에서는 버튼이 안 보이나요?
+## Why are the buttons missing on desktop?
 
-Meta 공식 문서에 따르면 인스타그램 메시징의 [버튼 템플릿](https://developers.facebook.com/documentation/business-messaging/instagram-messaging/button-template), [제네릭 템플릿](https://developers.facebook.com/documentation/business-messaging/instagram-messaging/generic-template), [빠른 답장](https://developers.facebook.com/documentation/business-messaging/instagram-messaging/features/quick-replies)은 웹 버전을 지원하지 않습니다. 그런데 실제로는 인스타그램 웹도 버튼 정보(`cta_buttons`)를 받아 두고 있고, postback 전송 기능도 웹 코드 안에 들어 있습니다. 화면에 그리지만 않을 뿐입니다.
+Meta's developer docs state that [button templates](https://developers.facebook.com/documentation/business-messaging/instagram-messaging/button-template), [generic templates](https://developers.facebook.com/documentation/business-messaging/instagram-messaging/generic-template) and [quick replies](https://developers.facebook.com/documentation/business-messaging/instagram-messaging/features/quick-replies) are not supported on the web version of Instagram.
 
-이 확장 프로그램은 페이지에 이미 들어와 있는 버튼 정보를 읽어 버튼을 만들고, 누르면 인스타그램 웹에 들어 있는 postback 전송 기능(`IGDGenericTemplatePostbackCTAButtonOffMsysMutation`)을 그대로 호출합니다.
+In practice, Instagram Web already receives the button data (`cta_buttons`) for these messages, and its JavaScript bundle even ships a postback button component and mutation (`IGDGenericTemplatePostbackCTAButtonOffMsysMutation`). It just never renders them.
 
-## 주의 사항
+This extension reads the CTA data already present in the page's Relay store, renders the buttons under each message, and calls Instagram Web's own postback mutation when you click.
 
-- 인스타그램의 비공개 내부 기능을 사용합니다. 인스타그램이 웹 코드를 바꾸면 작동하지 않을 수 있습니다.
-- 전송에 실패하면 버튼에 "실패"가 표시됩니다. 이때는 휴대폰 앱에서 버튼을 눌러 주세요.
-- 버튼을 누르면 버튼 문구가 상대 계정에 메시지로 전송됩니다.
-- 개인 사용 목적으로 만들었습니다. 인스타그램 이용약관 준수와 사용에 따른 책임은 사용자에게 있습니다. Meta 및 Instagram과 관련이 없습니다.
+## Caveats
 
-## 문제가 생기면
+- Relies on undocumented Instagram internals. It may break when Instagram updates its web app.
+- If sending fails, the button shows a failure message. Use the mobile app for that message.
+- Clicking a postback button sends the button text to the other account as a message.
+- Built for personal use. You are responsible for complying with Instagram's Terms of Use. Not affiliated with Meta or Instagram.
 
-[Issues](../../issues)에 증상과 함께 남겨 주세요. 크롬 개발자 도구(F12) 콘솔에 `[IG DM CTA]`로 시작하는 오류가 있으면 같이 적어 주시면 도움이 됩니다.
+## Troubleshooting
+
+Open an [issue](../../issues) describing what happened. If the Chrome DevTools console (F12) shows errors starting with `[IG DM CTA]`, please include them.
 
 ---
 
-## English
-
-**Instagram DM buttons not showing on desktop?** Automated DMs sent by tools like ManyChat (comment-to-DM, lead magnets, giveaways) use button templates, generic templates and quick replies, which Instagram renders only in the mobile app. On instagram.com you see the message text ("Click the button below…") but no button.
-
-This Chrome extension reads the button data (`cta_buttons`) that Instagram Web already loads, renders the buttons under each message, and sends postbacks through Instagram Web's own built-in postback mutation, just like tapping the button in the app. URL buttons open in a new tab.
-
-**Install:** Code → Download ZIP → unzip → open `chrome://extensions` → enable Developer mode → Load unpacked → select the folder → reload Instagram DMs. Works on Chrome, Edge, Whale and other Chromium browsers.
-
-**Notes:** Uses undocumented Instagram internals and may break when Instagram updates its web app. No data leaves the page. Not affiliated with Meta or Instagram. Use at your own risk.
-
-Keywords: instagram dm button not showing desktop, instagram web quick reply, manychat button not working desktop, instagram postback button chrome extension, 인스타 DM 버튼 안보임, 인스타그램 PC 버튼, 자동 DM 버튼, 댓글 DM 버튼, 매니챗
+Keywords: instagram dm button not showing desktop, instagram web dm buttons, instagram quick reply desktop, manychat button not working desktop, instagram postback button, instagram cta button chrome extension, instagram button template web, comment to dm button missing

@@ -1,8 +1,28 @@
 // Instagram DM CTA Buttons
-// 인스타그램 웹이 받아 두고도 화면에 그리지 않는 자동 DM 버튼(postback, 링크)을 메시지 아래에 표시합니다.
+// Renders CTA buttons (postback, web_url) that Instagram Web receives but never displays.
 (function () {
   'use strict';
   const MARK = 'data-igdmbtn';
+  const KO = (navigator.language || '').toLowerCase().startsWith('ko');
+  const T = KO ? {
+    noModule: '오류: 인스타그램 내부 모듈을 찾지 못했어요',
+    sending: '보내는 중…',
+    retry: '실패, 다시 누르기: ',
+    sent: '✓ 보냄: ',
+    postbackTip: '누르면 이 문구가 상대에게 전송됩니다',
+    linkTip: '링크 열기',
+    unsupported: '지원하지 않는 버튼 형식: ',
+    unknown: '알 수 없음',
+  } : {
+    noModule: 'Error: Instagram internal module not found',
+    sending: 'Sending…',
+    retry: 'Failed, click to retry: ',
+    sent: '✓ Sent: ',
+    postbackTip: 'Clicking sends this text to the other account',
+    linkTip: 'Open link',
+    unsupported: 'Unsupported button type: ',
+    unknown: 'unknown',
+  };
 
   function getFiber(el) {
     const k = Object.keys(el).find((k) => k.startsWith('__reactFiber'));
@@ -50,7 +70,7 @@
     return null;
   }
 
-  // 메시지 id별 버튼 목록
+  // CTA buttons grouped by message id
   function collectButtons(src) {
     const map = new Map();
     for (const id of src.getRecordIDs()) {
@@ -64,7 +84,7 @@
     return map;
   }
 
-  // 화면의 메시지 요소에서 메시지 id 찾기
+  // Resolve the message id of a rendered DOM element
   function messageIdOf(el) {
     let f = getFiber(el);
     let n = 0;
@@ -91,11 +111,11 @@
     const mutation = req('IGDGenericTemplatePostbackCTAButtonOffMsysMutation.graphql');
     const ctx = req('createIGDMessageSendContext');
     if (!CometRelay || !mutation || !ctx) {
-      uiBtn.textContent = '오류: 인스타그램 내부 모듈을 찾지 못했어요';
+      uiBtn.textContent = T.noModule;
       return;
     }
     uiBtn.disabled = true;
-    uiBtn.textContent = '보내는 중…';
+    uiBtn.textContent = T.sending;
     CometRelay.commitMutation(env, {
       mutation,
       variables: {
@@ -109,15 +129,15 @@
       onCompleted: (res, errors) => {
         if (errors && errors.length) {
           uiBtn.disabled = false;
-          uiBtn.textContent = '실패, 다시 누르기: ' + btn.title;
+          uiBtn.textContent = T.retry + btn.title;
           console.warn('[IG DM CTA]', errors);
         } else {
-          uiBtn.textContent = '✓ 보냄: ' + btn.title;
+          uiBtn.textContent = T.sent + btn.title;
         }
       },
       onError: (e) => {
         uiBtn.disabled = false;
-        uiBtn.textContent = '실패, 다시 누르기: ' + btn.title;
+        uiBtn.textContent = T.retry + btn.title;
         console.warn('[IG DM CTA]', e);
       },
     });
@@ -136,14 +156,14 @@
         'cursor:pointer;border:0;border-radius:10px;padding:8px 12px;font-weight:600;font-size:14px;' +
         'background:rgba(255,255,255,0.15);color:inherit;width:100%;';
       if (b.cta_type === 'postback' && b.postback_payload) {
-        el.title = '누르면 이 문구가 상대에게 전송됩니다';
+        el.title = T.postbackTip;
         el.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
           sendPostback(env, threadId, b, el);
         });
       } else if (b.action_url) {
-        el.title = '링크 열기';
+        el.title = T.linkTip;
         el.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -151,7 +171,7 @@
         });
       } else {
         el.disabled = true;
-        el.title = '지원하지 않는 버튼 형식: ' + (b.cta_type || '알 수 없음');
+        el.title = T.unsupported + (b.cta_type || T.unknown);
       }
       box.appendChild(el);
     }
@@ -167,7 +187,7 @@
     if (!btnMap.size) return;
     const threadId = findThreadId(src);
 
-    // 각 XMA 메시지의 제목 텍스트를 찾아 그 아래에 버튼 삽입
+    // Find each XMA message's title text and insert buttons below it
     const done = new Set();
     for (const [mid, buttons] of btnMap) {
       const xma = src.get('client:SlideMessage:' + mid + ':content:xma');
@@ -178,7 +198,7 @@
       for (const el of candidates) {
         if (el.childElementCount > 3) continue;
         if (!el.textContent || !el.textContent.includes(first)) continue;
-        if ([...el.children].some((c) => c.textContent.includes(first))) continue; // 가장 안쪽 요소만
+        if ([...el.children].some((c) => c.textContent.includes(first))) continue; // innermost element only
         if (done.has(el)) continue;
         if (messageIdOf(el) !== mid) continue;
         const host = el.parentElement;

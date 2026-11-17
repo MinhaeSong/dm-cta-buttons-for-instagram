@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Instagram DM CTA Buttons",
   "version": "1.0.0",
-  "description": "인스타그램 PC 웹 DM에서 렌더링되지 않는 CTA 버튼(postback, web_url)을 표시하고 실행합니다.",
+  "description": "Render and click the CTA buttons (postback, URL) that Instagram DMs hide on desktop web.",
   "content_scripts": [
     {
       "matches": ["https://www.instagram.com/*"],
