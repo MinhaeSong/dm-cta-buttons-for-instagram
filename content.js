@@ -1,4 +1,4 @@
-// IG DM 버튼 표시기
+// Instagram DM CTA Buttons
 // 인스타그램 웹이 받아 두고도 화면에 그리지 않는 자동 DM 버튼(postback, 링크)을 메시지 아래에 표시합니다.
 (function () {
   'use strict';
@@ -110,7 +110,7 @@
         if (errors && errors.length) {
           uiBtn.disabled = false;
           uiBtn.textContent = '실패, 다시 누르기: ' + btn.title;
-          console.warn('[IG DM 버튼]', errors);
+          console.warn('[IG DM CTA]', errors);
         } else {
           uiBtn.textContent = '✓ 보냄: ' + btn.title;
         }
@@ -118,7 +118,7 @@
       onError: (e) => {
         uiBtn.disabled = false;
         uiBtn.textContent = '실패, 다시 누르기: ' + btn.title;
-        console.warn('[IG DM 버튼]', e);
+        console.warn('[IG DM CTA]', e);
       },
     });
   }
@@ -193,7 +193,7 @@
   let timer = null;
   const obs = new MutationObserver(() => {
     if (timer) return;
-    timer = setTimeout(() => { timer = null; try { scan(); } catch (e) { console.warn('[IG DM 버튼]', e); } }, 600);
+    timer = setTimeout(() => { timer = null; try { scan(); } catch (e) { console.warn('[IG DM CTA]', e); } }, 600);
   });
   function start() {
     obs.observe(document.body, { childList: true, subtree: true });

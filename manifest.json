@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "IG DM 버튼 표시기",
+  "name": "Instagram DM CTA Buttons",
   "version": "1.0.0",
-  "description": "인스타그램 PC 웹 DM에서 보이지 않는 자동 DM 버튼(postback, 링크)을 표시하고 누를 수 있게 합니다.",
+  "description": "인스타그램 PC 웹 DM에서 렌더링되지 않는 CTA 버튼(postback, web_url)을 표시하고 실행합니다.",
   "content_scripts": [
     {
       "matches": ["https://www.instagram.com/*"],

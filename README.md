@@ -1,6 +1,6 @@
-# IG DM Buttons: 인스타그램 PC 웹 DM 버튼 표시 크롬 확장 프로그램
+# Instagram DM CTA Buttons: 인스타그램 PC 웹 DM CTA 버튼 렌더러 (크롬 확장 프로그램)
 
-**Show hidden Instagram DM buttons (ManyChat, quick reply, postback, button template) on Instagram desktop web.**
+**Render hidden Instagram DM CTA buttons (postback, web_url, button template, generic template) on Instagram desktop web.**
 
 인스타그램 DM에서 "아래 버튼을 클릭하시면 DM이 발송됩니다!"라는 메시지를 받았는데 PC에서는 버튼이 안 보이나요? 댓글 자동 DM(ManyChat 같은 도구)이 보낸 버튼은 휴대폰 앱에서만 보이고, 인스타그램 PC 웹에는 나타나지 않습니다. 이 크롬 확장 프로그램을 설치하면 PC에서도 그 버튼을 보고 누를 수 있습니다.
 
@@ -46,7 +46,7 @@ Meta 공식 문서에 따르면 인스타그램 메시징의 [버튼 템플릿](
 
 ## 문제가 생기면
 
-[Issues](../../issues)에 증상과 함께 남겨 주세요. 크롬 개발자 도구(F12) 콘솔에 `[IG DM 버튼]`으로 시작하는 오류가 있으면 같이 적어 주시면 도움이 됩니다.
+[Issues](../../issues)에 증상과 함께 남겨 주세요. 크롬 개발자 도구(F12) 콘솔에 `[IG DM CTA]`로 시작하는 오류가 있으면 같이 적어 주시면 도움이 됩니다.
 
 ---
 
