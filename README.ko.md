@@ -1,4 +1,4 @@
-# Instagram DM CTA Buttons: 인스타그램 PC 웹 DM CTA 버튼 렌더러 (크롬 확장 프로그램)
+# DM CTA Buttons for Instagram: 인스타그램 PC 웹 DM CTA 버튼 렌더러 (크롬 확장 프로그램)
 
 [English](README.md) | **한국어**
 
@@ -46,7 +46,7 @@ Meta 공식 문서에 따르면 인스타그램 메시징의 [버튼 템플릿](
 
 ## 문제가 생기면
 
-[Issues](../../issues)에 증상과 함께 남겨 주세요. 크롬 개발자 도구(F12) 콘솔에 `[IG DM CTA]`로 시작하는 오류가 있으면 같이 적어 주시면 도움이 됩니다.
+[Issues](../../issues)에 증상과 함께 남겨 주세요. 크롬 개발자 도구(F12) 콘솔에 `[DM CTA]`로 시작하는 오류가 있으면 같이 적어 주시면 도움이 됩니다.
 
 
 키워드: 인스타 DM 버튼 안보임, 인스타그램 PC 버튼, 인스타그램 웹 DM 버튼, 자동 DM 버튼, 댓글 DM 버튼, 매니챗, 체험단 DM, instagram dm button not showing desktop

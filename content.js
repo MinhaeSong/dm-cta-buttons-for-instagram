@@ -1,4 +1,4 @@
-// Instagram DM CTA Buttons
+// DM CTA Buttons for Instagram
 // Renders CTA buttons (postback, web_url) that Instagram Web receives but never displays.
 (function () {
   'use strict';
@@ -130,7 +130,7 @@
         if (errors && errors.length) {
           uiBtn.disabled = false;
           uiBtn.textContent = T.retry + btn.title;
-          console.warn('[IG DM CTA]', errors);
+          console.warn('[DM CTA]', errors);
         } else {
           uiBtn.textContent = T.sent + btn.title;
         }
@@ -138,7 +138,7 @@
       onError: (e) => {
         uiBtn.disabled = false;
         uiBtn.textContent = T.retry + btn.title;
-        console.warn('[IG DM CTA]', e);
+        console.warn('[DM CTA]', e);
       },
     });
   }
@@ -213,7 +213,7 @@
   let timer = null;
   const obs = new MutationObserver(() => {
     if (timer) return;
-    timer = setTimeout(() => { timer = null; try { scan(); } catch (e) { console.warn('[IG DM CTA]', e); } }, 600);
+    timer = setTimeout(() => { timer = null; try { scan(); } catch (e) { console.warn('[DM CTA]', e); } }, 600);
   });
   function start() {
     obs.observe(document.body, { childList: true, subtree: true });

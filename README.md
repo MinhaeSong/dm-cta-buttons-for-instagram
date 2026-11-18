@@ -1,4 +1,4 @@
-# Instagram DM CTA Buttons
+# DM CTA Buttons for Instagram
 
 **English** | [한국어](README.ko.md)
 
@@ -52,7 +52,7 @@ This extension reads the CTA data already present in the page's Relay store, ren
 
 ## Troubleshooting
 
-Open an [issue](../../issues) describing what happened. If the Chrome DevTools console (F12) shows errors starting with `[IG DM CTA]`, please include them.
+Open an [issue](../../issues) describing what happened. If the Chrome DevTools console (F12) shows errors starting with `[DM CTA]`, please include them.
 
 ---
 
